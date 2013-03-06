@@ -5,18 +5,7 @@ $(function() {
   var facebookLogin = document.getElementById('facebookLogin');
 
   facebookLogin.addEventListener('click', function() {
-    Parse.FacebookUtils.logIn("user_likes, email", {
-      success: function(user) {
-        if (!user.existed()) {
-          alert("User signed up and logged in through Facebook!");
-        } else {
-          alert("User logged in through Facebook!");
-        }
-      },
-      error: function(user, error) {
-        alert("User cancelled the Facebook login or did not fully authorize.");
-      }
-    });
+
   }, false);
 });
 
@@ -29,14 +18,20 @@ $(function() {
 
   <div class="row">
     <div class="span4">
-      <a id="facebookLogin" class="btn btn-large btn-block btn-info">Login with Facebook</a>
-    </div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="span4">
-      <a class="btn btn-large btn-block btn-success">Login with Google</a>
+      <a id="facebookLogin" class="btn btn-large btn-block btn-info" href="/auth/facebook">Login with Facebook</a>
     </div>
   </div>
 
+  <br/>
+
+  <!-- <div class="row">
+    <div class="span4">
+      <a class="btn btn-large btn-block btn-success">Login with Google</a>
+    </div>
+  </div> -->
+
+  <h3>user</h3>
+  <pre>{{json user}}</pre>
+  <h3>session</h3>
+  <pre>{{json session}}</pre>
 </div>
