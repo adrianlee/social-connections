@@ -8,6 +8,8 @@ var express = require('express'),
 
 // Libs
 var pass = require('./lib/passport');
+var api = require('./lib/api');
+var routes = require('./lib/routes');
 
 var app = express();
 
@@ -26,6 +28,8 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
+  app.use(api);
+  app.use(routes);
 });
 
 app.configure('development', function() {

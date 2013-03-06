@@ -1,0 +1,46 @@
+{{#extend "scripts"}}
+<script>
+$(function() {
+  $('.profile').each(function(index) {
+    var profile = $(this);
+    var facebook_id = $(this).attr('data-facebook-id');
+    $.getJSON('https://graph.facebook.com/me/mutualfriends/' + facebook_id + '?fields=id,name,picture&access_token={{user.accessToken}}', function (res) {
+      var html = "<td>";
+      console.log(res.data);
+      for (var i = 0; i < res.data.length; i++) {
+        if (i >= 4) {
+          break;
+        }
+        html += "<img src='" + res.data[i].picture.data.url + "'/>";
+      }
+      html += "</td>";
+      profile.append(html);
+    });
+  });
+});
+</script>
+{{/extend}}
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Mutual Friends</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each users}}
+            <tr class="profile" data-facebook-id="{{this.facebook_id}}">
+              <td><img src="https://graph.facebook.com/{{this.facebook_id}}/picture?access_token={{../user.accessToken}}"/> <span>{{this.display_name}}</span></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

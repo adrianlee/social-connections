@@ -1,24 +1,20 @@
 {{#extend "stylesheets"}}{{/extend}}
 {{#extend "scripts"}}
 <script>
-$(function() {
-  var facebookLogin = document.getElementById('facebookLogin');
-
-  facebookLogin.addEventListener('click', function() {
-
-  }, false);
-});
-
 </script>
 {{/extend}}
 
 <div class="container">
-
-  <h3>Social Connections</h3>
-
   <div class="row">
-    <div class="span4">
-      <a id="facebookLogin" class="btn btn-large btn-block btn-info" href="/auth/facebook">Login with Facebook</a>
+    <div class="span12">
+      {{#if user}}
+        <a class="btn btn-large btn-block btn-warning" href="/logout">Logout</a>
+        <a class="btn btn-large btn-block btn-primary" href="/api/users">/api/users</a>
+        <a class="btn btn-large btn-block btn-primary" href="/users">/users</a>
+        <a class="btn btn-large btn-block btn-successful" href="/sink">/sink</a>
+      {{else}}
+        <a class="btn btn-large btn-block btn-info" href="/auth/facebook">Login with Facebook</a>
+      {{/if}}
     </div>
   </div>
 
@@ -29,9 +25,14 @@ $(function() {
       <a class="btn btn-large btn-block btn-success">Login with Google</a>
     </div>
   </div> -->
-
-  <h3>user</h3>
-  <pre>{{json user}}</pre>
-  <h3>session</h3>
-  <pre>{{json session}}</pre>
+  <div class="row">
+    <div class="span6">
+      <h3>user</h3>
+      <pre>{{json user}}</pre>
+    </div>
+    <div class="span6">
+      <h3>session</h3>
+      <pre>{{json session}}</pre>
+    </div>
+  </div>
 </div>

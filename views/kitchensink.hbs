@@ -1,0 +1,18 @@
+{{#extend "scripts"}}
+  <script>
+  $.getJSON('https://graph.facebook.com/me/mutualfriends/adrianlee?fields=id,name,picture&access_token={{user.accessToken}}', function (res) {
+    for (var i=0; i < res.data.length; i++) {
+      $('#mutualfriends').append(res.data[i].name + ", ");
+    }
+  });
+  </script>
+{{/extend}}
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h4>Mutual Friends w/ adrianlee</h4>
+      <div id="mutualfriends"></div>
+    </div>
+  </div>
+</div>
