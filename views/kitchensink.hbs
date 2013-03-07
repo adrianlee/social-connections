@@ -5,14 +5,35 @@
       $('#mutualfriends').append(res.data[i].name + ", ");
     }
   });
+
+  $.getJSON('https://graph.facebook.com/me/friends?access_token={{user.accessToken}}', function (res) {
+    $('#numfriends').append("Number of friends: " + res.data.length);
+    for (var i=0; i < res.data.length; i++) {
+      console.log(res);
+      $('#friendlist').append(res.data[i].name + ", ");
+    }
+  });
   </script>
 {{/extend}}
 
 <div class="container">
   <div class="row">
     <div class="span12">
+      <h4>Pic 200x200</h4>
+      <img src="https://graph.facebook.com/{{user.facebook_id}}/picture?width=200&height=200"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
       <h4>Mutual Friends w/ adrianlee</h4>
       <div id="mutualfriends"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <h4>Friend List</h4>
+      <div id="numfriends"></div>
+      <div id="friendlist"></div>
     </div>
   </div>
 </div>
